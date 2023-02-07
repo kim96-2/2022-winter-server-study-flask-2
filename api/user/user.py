@@ -27,7 +27,7 @@ class UserManagement(Resource):
             response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
             return make_response(response,400)
 
-        response = jsonify({"is_success":True ,"nickname" : "%s"%(row['nickname'])})
+        response = jsonify({"nickname" : "%s"%(row['nickname'])})
         return make_response(response,200)
 
     def post(self):
