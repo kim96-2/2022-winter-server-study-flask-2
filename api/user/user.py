@@ -19,7 +19,7 @@ class UserManagement(Resource):
             return make_response(response,400)
 
         quary = "select * from JaeHyukDATABASE.user where id = \"%s\" and pw = \"%s\";"
-        row = db.execute_one(quary,(userData['id'],userData['passward']))
+        row = db.execute_one(quary,(userData['id'],userData['password']))
 
         if row is None:
             response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
@@ -41,7 +41,7 @@ class UserManagement(Resource):
             return make_response(response,400)
              
         quary = "insert into JaeHyukDATABASE.user values(\"%s\",\"%s\",\"%s\");"
-        db.execute(quary,(userData['id'],userData['passward'],userData['nickname']))
+        db.execute(quary,(userData['id'],userData['password'],userData['nickname']))
         db.commit()
 
         response = jsonify({"is_success":True ,"message" : "유저 생성 성공"})
@@ -54,7 +54,7 @@ class UserManagement(Resource):
         userData = request.get_json()
 
         quary = "select * from JaeHyukDATABASE.user where id = \"%s\" and pw = \"%s\";"
-        row = db.execute_one(quary,(userData['id'],userData['passward']))
+        row = db.execute_one(quary,(userData['id'],userData['password']))
 
         if row is None:
             response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
@@ -83,7 +83,7 @@ class UserManagement(Resource):
         userData = request.get_json()
 
         quary = "select * from JaeHyukDATABASE.user where id = \"%s\" and pw = \"%s\";"
-        row = db.execute_one(quary,(userData['id'],userData['passward']))
+        row = db.execute_one(quary,(userData['id'],userData['password']))
 
         if row is None:
             response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
