@@ -17,14 +17,14 @@ class UserManagement(Resource):
         row = db.execute_one(quary,(id))
 
         if row is None:
-            response = jsonify({"is_success":False ,"message" : "해당 유저가 존재하지 않음"})
+            response = jsonify({"message" : "해당 유저가 존재하지 않음"})
             return make_response(response,400)
 
         quary = "select * from JaeHyukDATABASE.user where id = %s and pw = %s;"
         row = db.execute_one(quary,(id,pw))
 
         if row is None:
-            response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
+            response = jsonify({"message" : "아이디나 비밀번호 불일치"})
             return make_response(response,400)
 
         response = jsonify({"nickname" : "%s"%(row['nickname'])})
