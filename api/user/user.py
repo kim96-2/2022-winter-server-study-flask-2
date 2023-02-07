@@ -15,14 +15,14 @@ class UserManagement(Resource):
         row = db.execute_one(quary,(userData['id']))
 
         if row is None:
-            response = jsonify({"is_success":False ,"message" : "해당 유저 존재하지 않음"})
+            response = jsonify({"is_success":False ,"message" : "해당 유저가 존재하지 않음"})
             return make_response(response,400)
 
         quary = "select * from JaeHyukDATABASE.user where id = \"%s\" and pw = \"%s\";"
         row = db.execute_one(quary,(userData['id'],userData['passward']))
 
         if row is None:
-            response = jsonify({"is_success":False ,"message" : "아이디어나 비밀번호 불일치"})
+            response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
             return make_response(response,400)
 
         response = jsonify({"is_success":True ,"nickname" : "%s"%(row['nickname'])})
@@ -57,7 +57,7 @@ class UserManagement(Resource):
         row = db.execute_one(quary,(userData['id'],userData['passward']))
 
         if row is None:
-            response = jsonify({"is_success":False ,"message" : "아이디어나 비밀번호 불일치"})
+            response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
             return make_response(response,400)
 
         #return row['nickname'] +" and "+ userData['nickname']
@@ -86,7 +86,7 @@ class UserManagement(Resource):
         row = db.execute_one(quary,(userData['id'],userData['passward']))
 
         if row is None:
-            response = jsonify({"is_success":False ,"message" : "아이디어나 비밀번호 불일치"})
+            response = jsonify({"is_success":False ,"message" : "아이디나 비밀번호 불일치"})
             return make_response(response,400)
 
         quary = "Delete from JaeHyukDATABASE.user where id = \"%s\";"
